@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "724cc98d-0074-4c69-823d-833689a65b67",
+		"name": "Practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "View information about yourself",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0d89490-aabf-435d-aece-0c06dda8a896",
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Role is 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.role).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Login is testuser123456\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.login).to.eql(\"testuser123456\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAAZ-KQx9Y8kGFX7ItjR4uNgAAAAACAAAAAAAQZgAAAAEAACAAAADevANSQfNn3Li5AD5peDwZKPY2uyZ2SNXBm4pYIYkmPwAAAAAOgAAAAAIAACAAAAA1MXxoV0VhO5_CbVP99QOu5m11wk92jWha8ndZWGNisBABAABZaV7JPYxY8YWSMrvVqdZlKtFurgE9dUlwyxNHvOEPhp-GHq_qMyGGelfHJTJSpZiZAqagyzVqW6KY5Cw6fFmsUw3OvELEgrxexJmdCwES9OI2gt60YHyAPQuJ9An1TJVP1dOUx68JeGqTjGOvLfKiSuPNL1hKmPMUjFvS1w0ujPemJNxFnJTYAfYsMMLJc4sL4PON3ythUlWAFqV7qN0l-EVexiUFRnRcCJmitOtdVMslkJ6FCoXwFWwWgY-RuimnnMj9iL8AVp2Hl5mRXeAJvUAaZfJUG8LVua2lQ-T-CjCjrqha72Mp-QAUwCboyhp0UidyxAz3g9iHv0YyuixJ0kjpzSgpc7O_Y0myD9_UNUAAAADc4WRTyu6j-I2lBJILSHHxg0yKOeWRY3ckF3fncLW08GrLPbf8ee19DGQgZbvBktjFWxBOBxLcjycRpcueuDoa",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.40.150.146/api/me",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all map",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87266b2f-a0df-4604-93a7-f660652750ff",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON is Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.40.150.146/api/map",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"map"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e61d1f59-a419-4247-ba2e-1856c3b294c1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Owner is testuser123456\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.owner.login).to.eql(\"testuser123456\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Name\": \"mypostmangame\",\r\n  \"MapId\": \"bebe519dd8f7458eb8fd9aba960d17e7\",\r\n  \"SwitchTimeout\": 3,\r\n  \"StartupTeamLives\": 4,\r\n  \"PoliceSpeed\": 2,\r\n  \"ThiefSpeed\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.40.150.146/api/game",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user games (except test)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e02cebe-6af8-489a-9280-8aa8a3e5d81e",
+						"exec": [
+							"pm.test(\"JSON is Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.40.150.146/api/games",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "376f1987-0cc2-4ba0-9445-bdf8cb435174",
+						"exec": [
+							"pm.test(\"JSON is Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.40.150.146/api/game",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all maps v2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c7a5c10-505b-4eb2-8d5e-24bc7122f0be",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON is Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.40.150.146/api/maps",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all maps by user id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c77140e5-9643-47ef-88f3-2869497ed75c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON is Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.40.150.146/api/user/89a25927ac0542a6a7fa15c022cd54e6/maps",
+					"protocol": "http",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user",
+						"89a25927ac0542a6a7fa15c022cd54e6",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAAZ-KQx9Y8kGFX7ItjR4uNgAAAAACAAAAAAAQZgAAAAEAACAAAAAm7ckkT0OOe3M4lHAHvH01gchrxnl05oabmqgtmwnJNwAAAAAOgAAAAAIAACAAAAA0zT7dghMVFB5eRUx86q7Akufw0xHvOrvRR9zbX1QgwRABAADH4LWk-mEBUxLA91F-tOWgdSYVAW_sGoen4Fw-y7CXCxJ3y_dnZSE1F4PcvkrKTWAgW9nmmxssrWzfB5K_W__ujyCyyrHoVeI5zsg0tYQ-tMKujDb0m1-tuV27VrxSg0_HDgilPiq-omIXjlT9weGY8mCqm79v5RCM_A9rZK1gSpW--GGED3Sxw-IEUcj1dtS4cE8xy9wDS2S3RL9-mDx0ncBkpA7RIqo1Vae8duRXTEhJ4WMtg4uIt5WSOylK179R6pe5MAnbMcAAgz_56ksYMc7RfreXzUlWnB5O8nXEpQeAo4ixjlrRnvOT_Et_sukbDWvE4J3HGXar5juWLbvMyL4L-HB-19UIEBbuExRWZkAAAAAZ2LpP32z_o3tyuwKLbMXypJwPtFXlo3Sbd9RlPMJhpsR-cSCahZKbFkHn2Z3mIH9rQbYt3CEvwyG67Eo6RKvM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e3d852c4-b4cd-4374-9697-ff1176464e71",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f856f0e9-237f-4756-92ef-8ede8c7305fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
